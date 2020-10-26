@@ -61,5 +61,20 @@ $(function () {
             }
         })
     })
+
     // 3.注册成功后切换登录界面
+    $('.login .myForm').on('submit',function(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: BASE_URL + '/api/login',
+            data: $(this).serialize(),
+            success: function(res){
+                layer.msg(res.message);
+                if(res.status === 0){
+                    location.href = '../../../index.html';
+                }
+            }
+        })
+    })
 });
